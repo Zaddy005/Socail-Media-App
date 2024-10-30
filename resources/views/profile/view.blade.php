@@ -30,27 +30,38 @@
                 </ul>
             </div>
 
-            <div class="container my-2 mx-auto">
-                <div class="bg-white border rounded-lg shadow p-6">
-                    <div class="flex items-center" >
-                        <a href="javascript:void(0);" class="w-12 h-12 block rounded-full bg-blue-100 overflow-hidden d-flex justify-center items-center" >
-                            <img class="w-auto h-auto" src="https://i.redd.it/snoovatar/avatars/1be74877-5bfa-41b5-8805-90297e8d8af3.png" />
-                        </a>
-                        <div class="mx-3 text-gray-500" >
-                            <h6>{{ Auth::user()->name }}</h6>
-                            <span> 0 follower  </span>
-                        </div>
-        
-                    </div>
-                    
-                    <!-- Example of dynamic data -->
-                    <div class="mt-6">
-                        <div class="w-auto h-16 text-justify overflow-hidden break-words bg-blue-100 py-3 px-4 rounded-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-                    </div>
-                </div>
-            </div>
+            @foreach ($posts as $post)
+                {{-- post view --}}
+                <a href="" >
+                    <div class="container my-3 mx-auto">
+                        <div class="bg-white border rounded-lg shadow p-6">
+                            <div class="flex items-center" >
+                                <a href="javascript:void(0);" class="w-12 h-12 block rounded-full bg-blue-100 overflow-hidden d-flex justify-center items-center" >
+                                    <img class="w-auto h-auto" src="https://i.redd.it/snoovatar/avatars/1be74877-5bfa-41b5-8805-90297e8d8af3.png" />
+                                </a>
+                                <div class="mx-3 text-gray-500" >
+                                    <h6>{{ $post->user['name'] }}</h6>
+                                    <span>{{ $post->created_at->diffForHumans() }}</span>
+                                </div>
 
-            
+                            </div>
+                            
+                            <div class="mt-6">
+                                <div class="w-auto h-auto">
+                                    {{ $post->title }}
+                                </div>
+                            </div>
+
+                            <div class="flex items-center mt-2" >
+                                <a href="javascript:void(0);" class="bg-gray-100 border rounded-md
+                                px-3 py-1 mx-2 me-2" ><i class="fa-solid fa-thumbs-up"></i> Like</a>
+                                <a href="javascript:void(0);" class="bg-gray-100 border rounded-md
+                                px-3 py-1 mx-2 ms-2"  ><i class="fa-solid fa-message"></i> Comment</a>
+                            </div>
+                        </div>    
+                    </div>
+                </a>    
+            @endforeach
 
         </div>
 
